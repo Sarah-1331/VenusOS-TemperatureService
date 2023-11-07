@@ -411,7 +411,7 @@ update()
 #
 
 #---------------------- support python 2 and 3
-GLib.timeout_add(10000, update)
+GLib.timeout_add(3000, update)
 mainloop = GLib.MainLoop()
 logging.info ('Connected to dbus, and switching over to GLib.MainLoop() (= event based)')
 mainloop.run()
