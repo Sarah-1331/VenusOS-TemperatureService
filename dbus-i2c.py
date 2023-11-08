@@ -55,7 +55,7 @@ def update():
 #
 # So the only service left running is the Raspberry pi CPU temperature.
 #
-    update_rpi()
+#    update_rpi()
     update_W1()
 #    update_i2c()
 #    update_adc()
@@ -389,15 +389,15 @@ base = 'com.victronenergy'
 #dbusservice['adc-temp7']   ['/ProductName']     = 'Custard Pi-3 8x12bit adc'
 
 # Raspy CPU Temp
-dbusservice['cpu-temp'] = new_service(base, 'temperature', 'RPi_cpu', 'Raspberry Pi OS', SCount+1, 100, SCount+1)
+#dbusservice['cpu-temp'] = new_service(base, 'temperature', 'RPi_cpu', 'Raspberry Pi OS', SCount+1, 100, SCount+1)
 # Tidy up custom or missing items
-if os.path.exists('/sys/firmware/devicetree/base/model'):
-    with open('/sys/firmware/devicetree/base/model', 'r') as f:
-        value = str(f.readline().strip('\n'))
-        value = ''.join([c for c in value if c.isalnum() or c in [' ', '.']])
-        dbusservice['cpu-temp']['/ProductName'] = value
-else:
-    dbusservice['cpu-temp']['/ProductName'] = 'Raspberry Pi'
+#if os.path.exists('/sys/firmware/devicetree/base/model'):
+    #with open('/sys/firmware/devicetree/base/model', 'r') as f:
+        #value = str(f.readline().strip('\n'))
+        #value = ''.join([c for c in value if c.isalnum() or c in [' ', '.']])
+        #dbusservice['cpu-temp']['/ProductName'] = value
+#else:
+    #dbusservice['cpu-temp']['/ProductName'] = 'Raspberry Pi'
 
 # Persistent settings obejects in settingsDevice will not exist before this is executed
 initSettings(newSettings)
@@ -406,8 +406,7 @@ readSettings(settingObjects)
 
 # Do a first update so that all the readings appear.
 update()
-# update every 10 seconds - temperature and humidity should move slowly so no need to demand
-# too much CPU time
+# update every 3 seconds
 #
 
 #---------------------- support python 2 and 3
